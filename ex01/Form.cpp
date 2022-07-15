@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                       :+:      :+:    :+:   */
+/*   Form.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <stdlib.h>
 
 using std::cout;
 using std::endl;
 
 // Default Constructor
-Bureaucrat::Bureaucrat(void) : _name("Unnamed"), _grade(150) {
-    cout << "Bureaucrat constructor was called" << endl;
+Form::Form(void) : _name("Unnamed"), _grade(150) {
+    cout << "Form constructor was called" << endl;
 }
 // Destructor
-Bureaucrat::~Bureaucrat(void) {
-    cout << "Bureaucrat " << _name << " was deconstructed" << endl;
+Form::~Form(void) {
+    cout << "Form " << _name << " was deconstructed" << endl;
 }
 // Constructor with type
-Bureaucrat::Bureaucrat(string name, int grade): _name(name) {
+Form::Form(string name,bool originnaly_signed, int grade_signing, int grade_excuting): _name(name) {
     try
     {
-        if (grade < 1)
+        if (_grade_signing < 1 || _grade_executing < 1)
             throw GradeTooLowException() ;
-        else if (grade > 150)
+        else if (_grade_signing > 150 || _grade_executing > 150)
             throw GradeTooHighException() ;
-        _grade = grade;
+        _grade_signing = grade_signing;
+        _grade_executing = grade_executing;
     }
     catch (std::exception &e)
     {
@@ -40,36 +41,36 @@ Bureaucrat::Bureaucrat(string name, int grade): _name(name) {
         cout << e.what() << endl;
         return;
     }
-    cout << "Bureaucrat " << name << " was constructed" << endl;
+    cout << "Form " << name << " was constructed" << endl;
 }
 // Copy Constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &Bureaucrat) {
-    *this = Bureaucrat;
+Form::Form(const Form &Form) {
+    *this = Form;
 }
 // Overload assignation
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &Bureaucrat) {
-    _grade = Bureaucrat.getGrade();
+Form &Form::operator=(const Form &Form) {
+    _grade = Form.getGrade();
     return *this;
 }
 
 // Getter for name
-string Bureaucrat::getName(void) const {
+string Form::getName(void) const {
     return _name;
 }
 // Getter for grade
-int Bureaucrat::getGrade(void) const {
+int Form::getGrade(void) const {
     return _grade;
 }
-void Bureaucrat::upGrade(void)  {
+void Form::upGrade(void)  {
     if (_grade > 1)
          _grade--;
 }
-void Bureaucrat::deGrade(void)  {
+void Form::deGrade(void)  {
     if (_grade < 150)
         _grade++;
 }
-// surchage operateur d'insertion pour afficher le bureaucrat trqlement
-ostream &operator<<(ostream &o, const Bureaucrat &Bureaucrat) {
-        o << Bureaucrat.getName() << ", bureaucrat grade " << Bureaucrat.getGrade()  << "." <<endl;
+// surchage operateur d'insertion pour afficher le Form trqlement
+ostream &operator<<(ostream &o, const Form &Form) {
+        o << Form.getName() << ", Form grade " << Form.getGrade()  << "." <<endl;
     return o;
 }
