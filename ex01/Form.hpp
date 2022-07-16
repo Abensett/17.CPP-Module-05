@@ -34,8 +34,6 @@ class Form
 		int 	getGradeExec(void) const;
 		bool	getSigned(void) const;
 		void	beSigned(const Bureaucrat &Bureaucrat);
-		virtual void		execute(const Bureaucrat &bureaucrat) const = 0;		// the class is abstract
-		void				executeCheck(const Bureaucrat &bureaucrat) const;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -55,17 +53,6 @@ class Form
 				}
 		};
 
-		class ExecuteNotSigned : public std::exception
-		{
-			public:
-				virtual const char *what() const throw() { return ("Form is not signed"); }
-		};
-		
-		class FileOpeningFail : public std::exception
-		{
-			public:
-				virtual const char *what() const throw() { return ("File cannot be opened"); }
-		};
 
 
 	private:
