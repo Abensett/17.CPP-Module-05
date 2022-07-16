@@ -29,9 +29,9 @@ Bureaucrat::Bureaucrat(string name, int grade): _name(name) {
     try
     {
         if (grade < 1)
-            throw GradeTooLowException() ;
-        else if (grade > 150)
             throw GradeTooHighException() ;
+        else if (grade > 150)
+            throw GradeTooLowException() ;
         _grade = grade;
     }
     catch (std::exception &e)
@@ -61,12 +61,30 @@ int Bureaucrat::getGrade(void) const {
     return _grade;
 }
 void Bureaucrat::upGrade(void)  {
-    if (_grade > 1)
-         _grade--;
+    try
+    {
+        if (_grade == 1)
+            throw GradeTooHighException();
+    }
+    catch (std::exception &e)
+    {
+        cout << e.what() << endl;
+        return ;
+    }
+    _grade--;
 }
 void Bureaucrat::deGrade(void)  {
-    if (_grade < 150)
-        _grade++;
+    try
+    {
+        if (_grade == 150)
+            throw GradeTooLowException();
+    }
+    catch (std::exception &e)
+    {
+        cout << e.what() << endl;
+        return;
+    }
+    _grade++;
 }
 // surchage operateur d'insertion pour afficher le bureaucrat trqlement
 ostream &operator<<(ostream &o, const Bureaucrat &Bureaucrat) {

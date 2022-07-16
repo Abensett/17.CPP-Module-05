@@ -85,11 +85,3 @@ ostream &operator<<(ostream &o, const Form &Form) {
 	o << "\t" << "grade needed to execute : " << Form.getGradeExec() << std::endl;
     return o;
 }
-
-void	Form::executeCheck(const Bureaucrat &bureaucrat) const
-{
-	if (!this->getSigned())
-		throw Form::ExecuteNotSigned();
-	if (this->getGradeExec() < bureaucrat.getGrade())
-		throw Form::GradeTooLowException();
-}

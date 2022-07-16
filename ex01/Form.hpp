@@ -15,23 +15,27 @@
 
 #include <iostream>
 #include <string>
-
+#include "Bureaucrat.hpp"
 using std::string;
 using std::ostream;
 
+class Bureaucrat;
 class Form
 {
  	public:
 		Form(void);
 		~Form(void);
-		explicit Form(const string name,bool originnaly_signed, int grade_signing, int grade_excuting);
+		explicit Form(const string name, int grade_signing, int grade_excuting);
 		Form(const Form &Form);
 		Form &operator=(const Form &Form);
 
 		string 	getName(void) const;
-		int 	getGrade(void) const;
-		void	upGrade(void);
-		void	deGrade(void);
+		int 	getGradeSign(void) const;
+		int 	getGradeExec(void) const;
+		bool	getSigned(void) const;
+		void	beSigned(const Bureaucrat &Bureaucrat);
+		virtual void		execute(const Bureaucrat &bureaucrat) const = 0;		// the class is abstract
+		void				executeCheck(const Bureaucrat &bureaucrat) const;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -51,10 +55,22 @@ class Form
 				}
 		};
 
+		class ExecuteNotSigned : public std::exception
+		{
+			public:
+				virtual const char *what() const throw() { return ("Form is not signed"); }
+		};
+		
+		class FileOpeningFail : public std::exception
+		{
+			public:
+				virtual const char *what() const throw() { return ("File cannot be opened"); }
+		};
+
 
 	private:
 		const string  	_name;
-		bool originally_signed;
+		bool 			_signed;
 		const int		_grade_signing;
 		const int		_grade_executing;
 };

@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:25:41 by abensett          #+#    #+#             */
-/*   Updated: 2022/07/15 19:20:59 by abensett         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:22:54 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ using std::endl;
 
 int main()
 {
-	Bureaucrat a = Bureaucrat("Albert",30);
+	Bureaucrat a = Bureaucrat("Albert",1);
 	Bureaucrat b = Bureaucrat("Harry",-1);
 	Bureaucrat c = Bureaucrat("Jack",151);
 	Bureaucrat d = Bureaucrat("Daryl",150);
@@ -32,7 +32,8 @@ int main()
 	cout << a << endl;
 	d.deGrade();
 	cout << d << endl;
-
+	d.upGrade();
+	cout << d << endl;
 
 
 
