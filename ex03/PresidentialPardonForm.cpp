@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:22:38 by abensett          #+#    #+#             */
-/*   Updated: 2022/07/16 18:24:31 by abensett         ###   ########.fr       */
+/*   Updated: 2022/07/16 19:18:03 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ using std::cout;
 using std::endl;
 
 // Default Constructor
-PresidentialPardonForm::PresidentialPardonForm(void) : Form("Presidential pardon", 25, 5), _target("Unnamed") {
+PresidentialPardonForm::PresidentialPardonForm(void) : Form("PresidentialPardon", 25, 5), _target("Unnamed") {
     cout << "PresidentialPardonForm constructor was called" << endl;
 }
 // Destructor

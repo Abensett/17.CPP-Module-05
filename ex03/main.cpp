@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:25:41 by abensett          #+#    #+#             */
-/*   Updated: 2022/07/16 18:26:30 by abensett         ###   ########.fr       */
+/*   Updated: 2022/07/16 19:24:02 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,60 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-
-#include "Form.hpp"
+#include "Intern.hpp"
 
 using std::cout;
 using std::endl;
 
 
+static void     printTitle(std::string title)
+{
+        std::string     toPrint;
+        int     size = 68;
+        int     n;
+
+        toPrint = " " + title + " ";
+        n = toPrint.size();
+        if (n > size)
+        {
+                toPrint = toPrint.substr(0, size - 2);
+                toPrint[size - 4] = '.';
+                toPrint[size - 3] = ' ';
+                n = toPrint.size();
+        }
+        std::cout << std::endl << std::setfill('=') << std::setw(size) << "" << std::endl;
+        std::cout << std::setw(size / 2) << toPrint.substr(0, n / 2);
+        std::cout << toPrint.substr(n / 2, n - n / 2);
+        std::cout << std::setfill('=') << std::setw(size - size / 2 - n + n / 2) << "" << std::endl;
+        std::cout << std::setfill('=') << std::setw(size) << "" << std::endl;
+}
+
+
 int	main(void)
 {
-	
-	Form		*shrub = new ShrubberyCreationForm("home");
-	Bureaucrat	corr("Correcteur", 1);
-	Bureaucrat	me("Lucie", 140);
+	srand(time(NULL));
 
-	corr.executeForm(*shrub);
-	corr.signForm(*shrub);
-	std::cout << *shrub << std::endl;
-	std::cout << corr << std::endl;
-	corr.executeForm(*shrub);
-	me.executeForm(*shrub);
-	delete shrub;
+	printTitle("Formular Creation");
+	Bureaucrat	pres("President", 1);
+	Intern		someRandomIntern;
+	Form		*forms[4];
 
+	forms[0] = someRandomIntern.makeForm("shrubbery creation", "1");
+	forms[1] = someRandomIntern.makeForm("robotomy request", "2");
+	forms[2] = someRandomIntern.makeForm("presidential pardon", "3");
+	forms[3] = someRandomIntern.makeForm("formular", "Target4");
 
-	Form		*robotomy = new RobotomyRequestForm("Correcteur");
-	Bureaucrat	me2("Lucie", 1);
+	for (int i = 0; i < 4; i++)
+	{
+		if (forms[i])
+		{
+			std::cout << std::endl << *(forms[i]);
+			pres.signForm(*(forms[i]));
+			pres.executeForm(*(forms[i]));
+		}
+	}
 
-	me2.executeForm(*robotomy);
-	me2.signForm(*robotomy);
-	me2.executeForm(*robotomy);
-	me2.executeForm(*robotomy);
-	me2.executeForm(*robotomy);
-	me2.executeForm(*robotomy);
-	delete robotomy;
-	
-	
-	Form		*presidential = new PresidentialPardonForm("Correcteur");
-	Bureaucrat	me3("Lucie", 6);
-
-	me3.executeForm(*presidential);
-	me3.signForm(*presidential);
-	me3.executeForm(*presidential);
-	me3.upGrade();
-	me3.executeForm(*presidential);
-	delete presidential;
-
+	for (int i = 0; i < 4; i++)
+		delete forms[i];
 	return (0);
 }
