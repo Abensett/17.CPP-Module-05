@@ -37,7 +37,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &Shrubb
     *this = ShrubberyCreationForm;
 }
 // Overload assignation
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &ShrubberyCreationForm) 
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &ShrubberyCreationForm)
 {
     (void)ShrubberyCreationForm;
     return *this;
@@ -52,7 +52,12 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat) const
 	file.open((_target + "_shrubbery").c_str());
 	if (file.good() == false)
 		throw Form::FileOpeningFail();
-	file << "Tree" << std::endl;
+	file << "   ## "<< std::endl;
+	file << "  #####   ######    ####     ####    #### "<< std::endl;
+	file << "   ##      ##  ##  ##  ##   ##  ## ###"<< std::endl;
+	file << "   ##      ##      ######   ######   ###"<< std::endl;
+	file << "   ## ##   ##      ##       ##         ###"<< std::endl;
+	file << "    ###   ####      #####    #####  ####"<< std::endl;
 	file.close();
 }
 

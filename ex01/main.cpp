@@ -6,7 +6,7 @@
 /*   By: abensett <abensett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:25:41 by abensett          #+#    #+#             */
-/*   Updated: 2022/07/16 15:52:36 by abensett         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:55:23 by abensett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main()
 
 	bob.signForm(f);
 	bob.signForm(f2);
+	std::cout << f2 << std::endl;
 	bob.upGrade();
 	f2.beSigned(bob);
 

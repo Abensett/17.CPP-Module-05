@@ -26,7 +26,7 @@ Intern::~Intern(void) {
 }
 
 // Copy Constructor
-Intern::Intern(const Intern &Intern) 
+Intern::Intern(const Intern &Intern)
 {
     *this = Intern;
 }
@@ -34,14 +34,6 @@ Intern::Intern(const Intern &Intern)
 Intern &Intern::operator=(const Intern &Intern) {
     (void)Intern;
     return *this;
-}
-static const std::string	lowerStr(const std::string str)
-{
-	std::string	res;
-
-	for (unsigned int i = 0; i < str.size(); i++)
-		res += tolower(str[i]);
-	return (res);
 }
 
 static Form	*newShrubbery(const std::string target)
@@ -62,17 +54,17 @@ static Form	*newPresidential(const std::string target)
 static int		getIndexForm(const std::string FormName)
 {
 	std::string		FormNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	int				choosen = -1;
+	int				chosen = -1;
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (lowerStr(FormName) == FormNames[i])
+		if (FormName == FormNames[i])
 		{
-			choosen = i;
+			chosen = i;
 			break;
 		}
 	}
-	return (choosen);
+	return (chosen);
 }
 
 Form	*Intern::makeForm(const std::string FormName, const std::string target) const
