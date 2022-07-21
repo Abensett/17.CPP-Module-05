@@ -27,7 +27,7 @@ class GradeTooHighException : public std::exception
 
 try
 {
- 	 if (something)
+ 	 if (grade > max)
           	throw GradeTooHighException() ;
 }
 catch (std::exception &e)
