@@ -32,7 +32,6 @@ class GradeTooHighException : public std::exception
     }
     catch (std::exception &e)
     {
-
         cout << e.what() << endl;
     }
     cout << "Bureaucrat " << name << " was constructed" << endl;
